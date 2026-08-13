@@ -10,10 +10,7 @@ const moduleRoutes =[
         path:"/user",
         route:UserRoute,
     },
-    {
-        path:"/auth",
-        route:AurthRoute,
-    },
+
 ]
 
 
