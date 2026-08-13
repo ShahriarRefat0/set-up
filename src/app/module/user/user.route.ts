@@ -10,7 +10,6 @@ router.get("/getAllUsers", UserController.getAllUsers);
 
 router.get("/:id", UserController.getUserById);
 
-router.delete('/delete-avater', 
-)
+
 
 export const UserRoute = router;
