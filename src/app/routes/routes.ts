@@ -9,8 +9,7 @@ const moduleRoutes =[
     {
         path:"/user",
         route:UserRoute,
-    },
-
+    }
 ]
 
 
