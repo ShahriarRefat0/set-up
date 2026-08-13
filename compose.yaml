@@ -1,0 +1,42 @@
+services:
+
+  app:
+    build:
+      context: .
+      
+      dockerfile: Dockerfile
+
+    container_name: setup-app
+
+    ports:
+      - 5000:5000
+    
+    env_file:
+      - .env
+
+    environment:
+      DATABASE_URL: postgresql://refat:123456@postgres:5432/setup_db
+
+    depends_on:
+      - postgres
+
+    restart: unless-stopped
+  postgres:
+    image: postgres:17-alpine
+
+    container_name: setup-postgres
+
+    environment:
+      POSTGRES_USER: refat
+      POSTGRES_DB: setup_db
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    restart: unless-stopped
+    
+volumes:
+  postgres_data:
