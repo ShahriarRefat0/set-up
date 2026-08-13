@@ -6,7 +6,9 @@ import { ApiResponse } from "../../utils/ApiResponse.js";
 //    Create user
 const createUser = catchAsync(async (req: Request, res: Response) => {
 
-  const result = await UserService.createUser(req.body);
+  const avatarBuffer = req.file?.buffer;
+
+  const result = await UserService.createUser(req.body, avatarBuffer);
   ApiResponse.success(res, "User created successfully", result, 201);
 });
 
@@ -26,10 +28,13 @@ const getUserById = catchAsync(async (req: Request, res: Response) => {
 //   Update user avatar
  
 //    Delete user avatar
-
+const deleteUserAavatar = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.deleteUserAvatar(req.params.id as string);
+  ApiResponse.success(res, "User fetched successfully", result);
+});
 export const UserController = {
   createUser,
   getAllUsers,
   getUserById,
-  
+  deleteUserAavatar
 };
